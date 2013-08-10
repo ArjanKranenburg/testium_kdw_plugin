@@ -34,7 +34,6 @@ public class KeywordDefinitionsWriterImpl implements KeywordDefinitionsWriter {
 
 	/*
 	 * TODO
-	 * - Store in GitHub
 	 * - Add description to parameters
 	 * - Add examples (1 minimal, 1 with all optional parameters) ==> Or can we do this in the XSL?
 	 */
