@@ -34,7 +34,7 @@ public class KeywordDefinitionsWriterImpl implements KeywordDefinitionsWriter {
 
 	/*
 	 * TODO
-	 * - Add description to parameters
+	 * - Add return values
 	 * - Add examples (1 minimal, 1 with all optional parameters) ==> Or can we do this in the XSL?
 	 */
 
@@ -159,7 +159,7 @@ System.out.println( "Continuing with default configuration" );
 				Collections.sort(commandList);
 			    for (String command : commandList)
 			    {
-					KeywordDefinitionsWriterImpl.writeCommand(ifTargetDir, ((SutInterface) iFace).getCommandExecutor(command));
+					this.writeCommand(ifTargetDir, ((SutInterface) iFace).getCommandExecutor(command));
 			    }
 			}
 		}
@@ -169,7 +169,7 @@ System.out.println( "Continuing with default configuration" );
 	 * @param ifTargetDir
 	 * @param testStepCommandExecutor
 	 */
-	private static void writeCommand(File ifTargetDir, TestStepCommandExecutor testStepCommandExecutor) {
+	private void writeCommand(File ifTargetDir, TestStepCommandExecutor testStepCommandExecutor) {
 		String command = testStepCommandExecutor.getCommand();
 		File cmdFile = new File( ifTargetDir, command + ".xml" );
 		FileWriter cmdFileWriter;
@@ -177,7 +177,7 @@ System.out.println( "Continuing with default configuration" );
 		{
 			cmdFileWriter = new FileWriter( cmdFile );
 
-			XmlWriterUtils.printXmlDeclaration(cmdFileWriter, "Keywords.xsl");
+			XmlWriterUtils.printXmlDeclaration(cmdFileWriter, config.getXslFileName());
 
 //					this.printXml(aTestGroupResult, cmdFileWriter, "", logDir);
 			cmdFileWriter.write("<TestStepDefinitions>\n");
@@ -212,6 +212,7 @@ System.out.println( "Continuing with default configuration" );
 		for ( SpecifiedParameter spec : parameterSpecs )
 	    {
 			cmdFileWriter.write("    <Parameterspec name='" + spec.getName() + "' type='" + spec.getType().getSimpleName() + "'>\n");
+			cmdFileWriter.write("      <Description>" + spec.getDescription() + "</Description>\n");
 			cmdFileWriter.write("      <Optional>" + Boolean.toString(spec.isOptional()) + "</Optional>\n");
 			cmdFileWriter.write("      <ValueAllowed>" + Boolean.toString(spec.isValue()) + "</ValueAllowed>\n");
 			cmdFileWriter.write("      <VariableAllowed>" + Boolean.toString(spec.isVariable()) + "</VariableAllowed>\n");
