@@ -15,6 +15,7 @@ import net.sf.testium.configuration.KeywordDefinitionsConfiguration;
 import net.sf.testium.configuration.KeywordDefinitionsWriterXmlHandler;
 import net.sf.testium.executor.SupportedInterfaceList;
 import net.sf.testium.executor.TestStepCommandExecutor;
+import net.sf.testium.executor.general.CustomTestStepExecutor;
 import net.sf.testium.executor.general.SpecifiedParameter;
 import net.sf.testium.plugins.KeywordDefinitionsWriter;
 import net.sf.testium.plugins.PluginCollection;
@@ -34,7 +35,6 @@ public class KeywordDefinitionsWriterImpl implements KeywordDefinitionsWriter {
 
 	/*
 	 * TODO
-	 * - Add return values
 	 * - Add examples (1 minimal, 1 with all optional parameters) ==> Or can we do this in the XSL?
 	 */
 
@@ -186,6 +186,17 @@ System.out.println( "Continuing with default configuration" );
 			cmdFileWriter.write(testStepCommandExecutor.getDescription());
 			cmdFileWriter.write("</Description>\n");
 			printParamSpecs(cmdFileWriter, testStepCommandExecutor);
+			if ( testStepCommandExecutor instanceof CustomTestStepExecutor ){
+				cmdFileWriter.write("    <ReturnValues>\n");
+				ArrayList<String> returnValues = ((CustomTestStepExecutor) testStepCommandExecutor).getReturnParameters();
+				Iterator<String> rvItr = returnValues.iterator();
+				while ( rvItr.hasNext() ) {
+					cmdFileWriter.write("      <ReturnValue>");
+					cmdFileWriter.write(rvItr.next());
+					cmdFileWriter.write("</ReturnValue>\n");
+				}
+				cmdFileWriter.write("    </ReturnValues>\n");
+			}
 			cmdFileWriter.write("  </TestStep>\n");
 
 // Can we do this in the xsl?
