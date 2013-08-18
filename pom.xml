@@ -3,9 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.testium-base</groupId>
 	<artifactId>testium-kdw-plugin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>Keyword Definitions Writer Plugin</name>
 	<description>Plugin for Testium in order to print the Keyword definitions</description>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 
 	<licenses>
 		<license>
