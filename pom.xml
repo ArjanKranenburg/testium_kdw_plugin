@@ -15,6 +15,12 @@
 		</license>
 	</licenses>
 
+	<scm>
+		<connection>scm:git:git@github.com:ArjanKranenburg/testium_kdw_plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:ArjanKranenburg/testium_kdw_plugin.git</developerConnection>
+		<url>git@github.com:ArjanKranenburg/testium_kdw_plugin.git</url>
+	</scm>
+
 	<developers>
 		<developer>
 			<id>arjankranenburg</id>
@@ -51,13 +57,6 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
-<!-- 
-					<archive>
-						<manifest>
-							<mainClass>net.sf.testium.Main</mainClass>
-						</manifest>
-					</archive>
- -->
 					<descriptor>assembly_descriptor.xml</descriptor>
 				</configuration>
 				<executions>
