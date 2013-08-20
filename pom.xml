@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.testium-base</groupId>
 	<artifactId>testium-kdw-plugin</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6-SNAPSHOT</version>
 	<name>Keyword Definitions Writer Plugin</name>
 	<description>Plugin for Testium in order to print the Keyword definitions</description>
 
